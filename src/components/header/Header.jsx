@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Modal from '../modal/Modal';
-
 import './header.scss';
 
 const Header = () => {
