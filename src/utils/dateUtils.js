@@ -1,6 +1,6 @@
 export const getWeekStartDate = (date) => {
-  const dateCopy = new Date(date);
-  const dayOfWeek = dateCopy.getDay();
+  const dateCopy = new Date(date); // 14
+  const dayOfWeek = dateCopy.getDay(); // 2
   const difference =
     dayOfWeek === 0
       ? -6 // for Sunday
