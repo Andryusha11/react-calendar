@@ -5,6 +5,8 @@
   align-items: center;
 
   &__content {
+    min-height: 200px;
+    line-height: 200px;
     background: #fff;
     padding: 16px;
     border: 1px solid #ccc;
@@ -45,7 +47,11 @@
 
   &__field {
     margin: 8px;
-    border: none;
+    margin-left: 20px;
+    border: 0;
+    &:focus {
+      outline: none;
+    }
   }
 
   &__submit-btn {
@@ -58,4 +64,26 @@
     padding: 8px 16px;
     border-radius: 8px;
   }
+  &__description {
+    display: flex;
+    align-items: center;
+  }
+}
+
+input[name='title'] {
+  &:focus {
+    border-bottom: 2.5px solid blue;
+  }
+  margin-left: 35px;
+}
+
+input[type='time']::-webkit-calendar-picker-indicator {
+  background: none;
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+  background: none;
+}
+textarea {
+  height: 30px;
+  line-height: 30px;
 }

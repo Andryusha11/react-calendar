@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../modal/Modal';
 
 import './header.scss';
 
 const Header = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const openModalWindow = () => {
+    setOpenModal(true);
+  };
+  const closeModalWindow = () => {
+    setOpenModal(false);
+  };
   return (
     <header className="header">
-      <button className="button create-event-btn">
+      <button onClick={openModalWindow} className="button create-event-btn">
         <i className="fas fa-plus create-event-btn__icon"></i>Create
       </button>
       <div className="navigation">
@@ -18,6 +27,7 @@ const Header = () => {
         </button>
         <span className="navigation__displayed-month"></span>
       </div>
+      <Modal close={closeModalWindow} open={openModal} />
     </header>
   );
 };

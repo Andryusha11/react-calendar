@@ -11,17 +11,33 @@
   &__icon {
     margin-right: 8px;
   }
+  &:hover {
+    transition: 0.7s background-color;
+    opacity: 0.7;
+    background-color: rgb(223, 223, 223);
+    color: rgb(2, 170, 2);
+  }
 }
 
 .navigation {
   &__today-btn {
     margin-left: 32px;
     padding: 0 16px;
+    &:hover {
+      transition: 0.7s background-color;
+      opacity: 0.7;
+      background-color: rgb(223, 223, 223);
+      color: rgb(2, 170, 2);
+    }
   }
 
   &__nav-icon {
     font-size: 16px;
     margin-left: 20px;
+    &:hover {
+      transition: 0.7s opacity;
+      color: rgb(2, 170, 2);
+    }
   }
 
   &__displayed-month {
