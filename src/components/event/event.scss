@@ -5,17 +5,27 @@
   z-index: 1;
   border-radius: 8px;
   padding: 8px;
+  // font-size: 10px;
   color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &__title {
     width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
     white-space: nowrap;
-    margin-bottom: 8px;
+    // margin-bottom: 8px;
   }
 
+  // &__time {
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  // }
+
   &:hover {
+    width: 100%;
+    // font-size: 12px;
     font-weight: bold;
     background-color: red;
   }

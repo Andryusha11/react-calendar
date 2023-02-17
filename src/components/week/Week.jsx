@@ -9,9 +9,6 @@ const Week = ({ weekDates, events }) => {
         const dayEnd = new Date(dayStart.getTime()).setHours(
           dayStart.getHours() + 24
         );
-        // console.log(new Date(dayEnd));
-        // console.log(weekDates);
-        // console.log(dayStart);
 
         //getting all events from the day we will render
         const dayEvents = events.filter(
