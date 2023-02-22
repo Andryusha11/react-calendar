@@ -5,33 +5,44 @@
   z-index: 1;
   border-radius: 8px;
   padding: 8px;
-  // font-size: 10px;
   color: #fff;
-  overflow: hidden;
+  // overflow: hidden;
   text-overflow: ellipsis;
 
   &__title {
     width: 100%;
-    // overflow: hidden;
-    // text-overflow: ellipsis;
     white-space: nowrap;
-    // margin-bottom: 8px;
   }
 
-  // &__time {
-  //   overflow: hidden;
-  //   text-overflow: ellipsis;
-  // }
+  &__time {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &:hover {
     width: 100%;
-    // font-size: 12px;
     font-weight: bold;
     background-color: red;
   }
 }
 
 .delete-event-btn {
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  left: 80px;
+  bottom: -28px;
+  display: none;
+  background-color: rgb(241, 241, 241);
   cursor: pointer;
   border: none;
+  margin: 0;
+  padding: 0;
+  &__text {
+    margin-left: 12px;
+  }
+}
+
+.event:hover .delete-event-btn {
+  display: block;
 }

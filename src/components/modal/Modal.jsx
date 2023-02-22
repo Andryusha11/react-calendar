@@ -1,59 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import events from '../../gateway/events';
+import React from 'react';
 
 import './modal.scss';
 
-const Modal = ({ open, close }) => {
+const Modal = ({
+  open,
+  closeModalWindow,
+  handleChangeEvent,
+  handleSubmitModalWindow,
+  eventTask,
+}) => {
   if (!open) return null;
 
-  const [eventTask, setEventTask] = useState({
-    id: events.length + 1,
-    title: '',
-    description: '',
-    dateFrom: `${new Date().getHours()}:${new Date().getSeconds()}`,
-    dateTo: `${new Date().getHours()}:${new Date().getSeconds()}`,
-    date: new Date().toISOString().split('T')[0],
-  });
-
-  useEffect(() => {
-    console.log(eventTask);
-  }, [eventTask]);
-
-  const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    setEventTask({
-      ...eventTask,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    events.push(eventTask);
-    close();
-    console.log(events);
-  };
   return (
     <div className="modal overlay">
       <div className="modal__content">
         <div className="create-event">
-          <button onClick={close} className="create-event__close-btn">
+          <button
+            onClick={closeModalWindow}
+            className="create-event__close-btn"
+          >
             +
           </button>
-          <form onSubmit={handleSubmit} className="event-form">
+          <form onSubmit={handleSubmitModalWindow} className="event-form">
             <input
               type="text"
               name="title"
               placeholder="Title"
               className="event-form__field"
               value={eventTask.title}
-              onChange={handleChange}
+              onChange={handleChangeEvent}
             />
             <div className="event-form__time">
               <i className="fa-regular fa-clock"></i>
               <input
                 value={eventTask.date}
-                onChange={handleChange}
+                onChange={handleChangeEvent}
                 type="date"
                 name="date"
                 className="event-form__field"
@@ -63,12 +44,12 @@ const Modal = ({ open, close }) => {
                 name="dateFrom"
                 className="event-form__field"
                 value={eventTask.dateFrom}
-                onChange={handleChange}
+                onChange={handleChangeEvent}
               />
               <span>-</span>
               <input
                 value={eventTask.dateTo}
-                onChange={handleChange}
+                onChange={handleChangeEvent}
                 type="time"
                 name="dateTo"
                 className="event-form__field"
@@ -78,7 +59,7 @@ const Modal = ({ open, close }) => {
               <i className="fa-solid fa-bars-staggered"></i>
               <textarea
                 value={eventTask.description}
-                onChange={handleChange}
+                onChange={handleChangeEvent}
                 name="description"
                 placeholder="Description"
                 className="event-form__field"
