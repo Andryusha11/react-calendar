@@ -4,4 +4,4 @@ build
 temp
 tmp
 package-lock.json
-dist
+dist/
