@@ -1,5 +1,6 @@
 import React from 'react';
 import { fetchDeleteEvent, fetchEventData } from '../../gateway/gateway';
+import { PropTypes } from 'prop-types';
 import './event.scss';
 
 const Event = ({ height, marginTop, title, time, id, setEvents }) => {
@@ -40,6 +41,15 @@ const Event = ({ height, marginTop, title, time, id, setEvents }) => {
       </button>
     </div>
   );
+};
+
+Event.propTypes = {
+  height: PropTypes.number.isRequired,
+  marginTop: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  setEvents: PropTypes.func.isRequired,
 };
 
 export default Event;

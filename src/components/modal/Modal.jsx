@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, { useState } from 'react';
 import { fetchCreateEvent, fetchEventData } from '../../gateway/gateway';
+import { PropTypes } from 'prop-types';
 
 import './modal.scss';
 
@@ -110,6 +111,11 @@ const Modal = ({ closeModalWindow, setEvents }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  setEvents: PropTypes.func.isRequired,
+  closeModalWindow: PropTypes.func.isRequired,
 };
 
 export default Modal;

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import './header.scss';
 
 const Header = ({
@@ -51,6 +52,13 @@ const Header = ({
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  openModalWindow: PropTypes.func.isRequired,
+  weekStartDate: PropTypes.object.isRequired,
+  weekDates: PropTypes.array.isRequired,
+  setWeekStartDay: PropTypes.func.isRequired,
 };
 
 export default Header;
