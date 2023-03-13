@@ -72,18 +72,7 @@
 
 input[name='title'] {
   &:focus {
-    border-bottom: 2.5px solid blue;
+    border-bottom: 2px solid blue;
   }
-  margin-left: 35px;
-}
-
-input[type='time']::-webkit-calendar-picker-indicator {
-  background: none;
-}
-input[type='date']::-webkit-calendar-picker-indicator {
-  background: none;
-}
-textarea {
-  height: 30px;
-  line-height: 30px;
+  margin-left: 36px;
 }

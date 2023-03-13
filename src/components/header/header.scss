@@ -31,19 +31,22 @@
     }
   }
 
-  &__nav-icon {
+  &__nav-icon-left {
     font-size: 16px;
     margin-left: 20px;
     &:hover {
       transition: 0.7s opacity;
       color: rgb(2, 170, 2);
     }
-    // &__right {
+  }
 
-    // }
-    // &__left {
-
-    // }
+  &__nav-icon-right {
+    font-size: 16px;
+    margin-left: 20px;
+    &:hover {
+      transition: 0.7s opacity;
+      color: rgb(2, 170, 2);
+    }
   }
 
   &__displayed-month {

@@ -1,16 +1,53 @@
-import React from 'react';
+import moment from 'moment';
+import React, { useState } from 'react';
+import { fetchCreateEvent, fetchEventData } from '../../gateway/gateway';
 
 import './modal.scss';
 
-const Modal = ({
-  open,
-  closeModalWindow,
-  handleChangeEvent,
-  handleSubmitModalWindow,
-  eventTask,
-}) => {
-  if (!open) return null;
+const Modal = ({ closeModalWindow, setEvents }) => {
+  const [eventTask, setEventTask] = useState({
+    title: '',
+    description: '',
+    dateFrom: moment().format('HH:mm'),
+    dateTo: moment().format('HH:mm'),
+    date: moment().format('yyyy-MM-DD'),
+  });
 
+  const handleCreateEvent = (e) => {
+    const { name, value } = e.target;
+    setEventTask({
+      ...eventTask,
+      [name]: value,
+    });
+  };
+
+  const handleSubmitModalWindow = (e) => {
+    e.preventDefault();
+    fetchCreateEvent({
+      ...eventTask,
+      dateFrom: moment(`${eventTask.date}/${eventTask.dateFrom}`).format(),
+      dateTo: moment(`${eventTask.date}/${eventTask.dateTo}`).format(),
+    }).then(() =>
+      fetchEventData().then((resultData) =>
+        setEvents(
+          resultData.map((event) => ({
+            ...event,
+            dateFrom: moment(event.dateFrom).format(),
+            dateTo: moment(event.dateTo).format(),
+            date: moment(event.date).format(),
+          }))
+        )
+      )
+    );
+    setEventTask({
+      title: '',
+      description: '',
+      dateFrom: new Date(moment().format('HH:mm')),
+      dateTo: new Date(moment().format('HH:mm')),
+      date: new Date(moment().format('yyyy-MM-DD')),
+    });
+    closeModalWindow();
+  };
   return (
     <div className="modal overlay">
       <div className="modal__content">
@@ -23,33 +60,33 @@ const Modal = ({
           </button>
           <form onSubmit={handleSubmitModalWindow} className="event-form">
             <input
+              value={eventTask.title}
+              onChange={handleCreateEvent}
               type="text"
               name="title"
               placeholder="Title"
               className="event-form__field"
-              value={eventTask.title}
-              onChange={handleChangeEvent}
             />
             <div className="event-form__time">
               <i className="fa-regular fa-clock"></i>
               <input
                 value={eventTask.date}
-                onChange={handleChangeEvent}
+                onChange={handleCreateEvent}
                 type="date"
                 name="date"
                 className="event-form__field"
               />
               <input
+                value={eventTask.dateFrom}
+                onChange={handleCreateEvent}
                 type="time"
                 name="dateFrom"
                 className="event-form__field"
-                value={eventTask.dateFrom}
-                onChange={handleChangeEvent}
               />
               <span>-</span>
               <input
                 value={eventTask.dateTo}
-                onChange={handleChangeEvent}
+                onChange={handleCreateEvent}
                 type="time"
                 name="dateTo"
                 className="event-form__field"
@@ -59,13 +96,12 @@ const Modal = ({
               <i className="fa-solid fa-bars-staggered"></i>
               <textarea
                 value={eventTask.description}
-                onChange={handleChangeEvent}
+                onChange={handleCreateEvent}
                 name="description"
                 placeholder="Description"
                 className="event-form__field"
               />
             </div>
-
             <button type="submit" className="event-form__submit-btn">
               Create
             </button>

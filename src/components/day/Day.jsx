@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Hour from '../hour/Hour';
 import './day.scss';
 
-const Day = ({ dataDay, dayEvents }) => {
+const Day = ({ dataDay, dayEvents, setEvents }) => {
   const currentDay = dataDay === new Date().getDate();
   const hours = Array(24)
     .fill()
@@ -13,18 +13,19 @@ const Day = ({ dataDay, dayEvents }) => {
   });
 
   useEffect(() => {
-    setTimeout(() => {
+    const interval = setInterval(() => {
       setStyleForRedLine({
         top: new Date().getHours() * 60 + new Date().getMinutes(),
       });
     }, 60000);
+
+    return clearInterval(interval);
   });
 
   return (
     <>
-      <div className="calendar__day" data-day={dataDay}>
+      <div key={Math.random()} className="calendar__day" data-day={dataDay}>
         {hours.map((hour) => {
-          //getting all events from the day we will render
           const hourEvents = dayEvents.filter(
             (event) => event.dateFrom.getHours() === hour
           );
@@ -32,20 +33,21 @@ const Day = ({ dataDay, dayEvents }) => {
           return (
             <>
               <Hour
-                key={dataDay + hour}
+                key={Math.random()}
                 dataHour={hour}
                 hourEvents={hourEvents}
+                setEvents={setEvents}
               />
             </>
           );
         })}
-        {currentDay ? (
+        {currentDay && (
           <div
-            key={styleForRedLine.top}
+            key={Math.random()}
             style={styleForRedLine}
             className="red-line"
           ></div>
-        ) : null}
+        )}
       </div>
     </>
   );
